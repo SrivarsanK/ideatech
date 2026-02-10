@@ -32,7 +32,7 @@ const Rounds = () => {
     ];
 
     return (
-        <section id="rounds" className="py-20 bg-[#0B1414] relative overflow-hidden">
+        <section id="rounds" className="pt-20 pb-8 bg-[#0B1414] relative overflow-hidden">
             {/* Background Glows */}
             <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] -translate-x-1/2"></div>
             <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-cyan-600/20 rounded-full blur-[120px] translate-x-1/2"></div>

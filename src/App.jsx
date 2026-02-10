@@ -7,6 +7,8 @@ import About from './components/About';
 import Prizes from './components/Prizes';
 import Perks from './components/Perks';
 import Footer from './components/Footer';
+import EventPosterShowcase from "./components/EventPosterShowcase";
+
 
 function App() {
   return (
@@ -15,6 +17,7 @@ function App() {
       <Hero />
       <About />
       <Rounds />
+      <EventPosterShowcase />
       <Prizes />
       <Perks />
       <PastEvents />
