@@ -21,13 +21,28 @@ const Navbar = () => {
         return () => window.removeEventListener('resize', checkLayout);
     }, []);
 
+    const [isVisible, setIsVisible] = useState(true);
+
     useEffect(() => {
+        let lastScrollY = window.scrollY;
+
         const handleScroll = () => {
-            setScrolled(window.scrollY > 20);
+            const currentScrollY = window.scrollY;
+
+            // Determine visibility based on scroll direction
+            if (!isOpen && currentScrollY > lastScrollY && currentScrollY > 100) {
+                setIsVisible(false); // Hide when scrolling down
+            } else {
+                setIsVisible(true); // Show when scrolling up
+            }
+
+            setScrolled(currentScrollY > 20);
+            lastScrollY = currentScrollY;
         };
+
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    }, [isOpen]);
 
     const navLinks = [
         { title: 'Home', href: '#' },
@@ -39,7 +54,7 @@ const Navbar = () => {
     ];
 
     return (
-        <div className="fixed top-0 left-0 w-full z-50 flex flex-col items-center pt-4 px-4">
+        <div className={`fixed top-0 left-0 w-full z-50 flex flex-col items-center pt-4 px-4 transition-transform duration-300 ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
             <motion.nav
                 initial={{ y: -100, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}

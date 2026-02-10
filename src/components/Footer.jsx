@@ -28,6 +28,32 @@ const Footer = () => {
                         </div>
                     </div>
 
+                    {/* Faculty Coordinators */}
+                    <div className="glass-card p-6 rounded-xl border border-white/10 bg-white/5">
+                        <h3 className="text-xl font-bold text-white mb-6 font-orbitron">Faculty Coordinators</h3>
+                        <div className="space-y-4">
+                            <div className="flex items-center justify-start gap-4 p-3 rounded-lg bg-black/20 hover:bg-black/40 transition-colors">
+                                <div className="p-2 bg-primary/10 rounded-full text-primary flex items-center justify-center shrink-0">
+                                    <Phone size={18} />
+                                </div>
+                                <div className="text-left">
+                                    <p className="text-white font-medium">Dr. S. Sridevi</p>
+                                    <a href="https://wa.me/919842483178" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-400 hover:text-primary transition-colors">+91 98424 83178</a>
+                                </div>
+                            </div>
+
+                            <div className="flex items-center justify-start gap-4 p-3 rounded-lg bg-black/20 hover:bg-black/40 transition-colors">
+                                <div className="p-2 bg-primary/10 rounded-full text-primary flex items-center justify-center shrink-0">
+                                    <Phone size={18} />
+                                </div>
+                                <div className="text-left">
+                                    <p className="text-white font-medium">Mrs. T. Archana</p>
+                                    <a href="https://wa.me/919791036055" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-400 hover:text-primary transition-colors">+91 97910 36055</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     {/* Coordinators */}
                     <div className="glass-card p-6 rounded-xl border border-white/10 bg-white/5">
                         <h3 className="text-xl font-bold text-white mb-6 font-orbitron">Student Coordinators</h3>
