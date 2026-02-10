@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Rocket, Sparkles, ChevronRight, Calendar, MapPin } from 'lucide-react';
+import CountdownTimer from './CountdownTimer';
 
 const Hero = () => {
     return (
@@ -50,6 +51,9 @@ const Hero = () => {
                     Innovate. Debug. Conquer. Join the ultimate tech showdown where ideas meet execution.
                 </motion.p>
 
+                {/* Countdown Timer */}
+                <CountdownTimer />
+
                 {/* Info Pills */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -88,7 +92,7 @@ const Hero = () => {
 
             </div>
 
-            
+
         </section>
     );
 };
