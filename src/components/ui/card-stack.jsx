@@ -38,6 +38,7 @@ export function CardStack({
 
     onChangeIndex,
     renderCard,
+    onCardClick,
 }) {
     const reduceMotion = useReducedMotion();
     const len = items.length;
@@ -209,7 +210,12 @@ export function CardStack({
                                         stiffness: springStiffness,
                                         damping: springDamping,
                                     }}
-                                    onClick={() => setActive(i)}
+                                    onClick={() => {
+                                        if (isActive && onCardClick) {
+                                            onCardClick(item);
+                                        }
+                                        setActive(i);
+                                    }}
                                     drag={isActive ? "x" : false}
                                     dragConstraints={{ left: 0, right: 0 }}
                                     dragElastic={0.18}
