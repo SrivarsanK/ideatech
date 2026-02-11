@@ -1,6 +1,22 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { CardStack } from './ui/card-stack';
+import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogDescription,
+} from "@/components/ui/dialog";
+import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
+} from "@/components/ui/carousel";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import galleryManifest from "@/data/event-gallery-manifest.json";
 
 const PastEvents = () => {
     const events = [
@@ -8,13 +24,22 @@ const PastEvents = () => {
             id: 1,
             title: 'Hackcelerate',
             description: 'A 24-hour hackathon that sparked valid industry solutions, bringing focused problem-solving and practical ideas together within a tight timeframe.',
-            image: '/ChatGPT Image Feb 10, 2026, 07_08_26 PM.png',
+            image: '/Hackcelerate/20260130_103351.jpg',
+            gallery: galleryManifest.hackcelerate || [],
         },
         {
             id: 2,
             title: 'Techno Rally',
             description: 'The ultimate tech scavenger hunt across campus, blending challenges, exploration, and hands-on learning into a high-energy experience.',
-            image: '/technorally.png',
+            image: '/TechnoRally/IMG_4681.jpg',
+            gallery: galleryManifest.technoRally || [],
+        },
+        {
+            id: 3,
+            title: 'DevSummit',
+            description: 'A premier developer conference uniting tech enthusiasts, industry leaders, and innovators for insightful keynotes, workshops, and networking.',
+            image: '/DevSummit/IMG_2588.JPG',
+            gallery: galleryManifest.devSummit || [],
         },
     ];
 
@@ -28,9 +53,22 @@ const PastEvents = () => {
         activeLiftPx: 20
     });
 
+    const [selectedEvent, setSelectedEvent] = React.useState(null);
+    const [isGalleryOpen, setIsGalleryOpen] = React.useState(false);
+    const [isMobile, setIsMobile] = React.useState(false);
+
+    const handleCardClick = (item) => {
+        const event = events.find(e => e.id === item.id);
+        if (event && event.gallery) {
+            setSelectedEvent(event);
+            setIsGalleryOpen(true);
+        }
+    };
+
     React.useEffect(() => {
         const handleResize = () => {
             const width = window.innerWidth;
+            setIsMobile(width < 640);
             if (width < 640) {
                 // Mobile configuration
                 setConfig({
@@ -98,9 +136,61 @@ const PastEvents = () => {
                         showDots={true}
                         autoAdvance={true}
                         intervalMs={3500}
+                        onCardClick={handleCardClick}
                     />
                 </div>
             </div>
+
+            <Dialog open={isGalleryOpen} onOpenChange={setIsGalleryOpen}>
+                <DialogContent className="max-w-4xl max-h-[90vh] bg-black/90 border-primary/20 text-white flex flex-col p-6">
+                    <DialogHeader>
+                        <DialogTitle className="text-2xl font-orbitron text-primary">{selectedEvent?.title} Gallery</DialogTitle>
+                        <DialogDescription className="text-gray-400">
+                            Highlights from {selectedEvent?.title}
+                        </DialogDescription>
+                    </DialogHeader>
+
+                    {isMobile ? (
+                        <ScrollArea className="h-[60vh] w-full rounded-md border border-white/10 p-4">
+                            <div className="flex flex-col gap-4">
+                                {selectedEvent?.gallery?.map((src, index) => (
+                                    <div key={index} className="rounded-xl overflow-hidden bg-black/50 border border-white/10">
+                                        <img
+                                            src={src}
+                                            alt={`Gallery image ${index + 1}`}
+                                            className="w-full h-auto object-cover"
+                                            loading="lazy"
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+                        </ScrollArea>
+                    ) : (
+                        <div className="flex items-center justify-center p-4">
+                            <Carousel className="w-full max-w-3xl">
+                                <CarouselContent>
+                                    {selectedEvent?.gallery?.map((src, index) => (
+                                        <CarouselItem key={index}>
+                                            <div className="p-1">
+                                                <div className="flex aspect-video items-center justify-center p-2 rounded-xl overflow-hidden bg-black/50 border border-white/10">
+                                                    <img
+                                                        src={src}
+                                                        alt={`Gallery image ${index + 1}`}
+                                                        className="w-full h-full object-contain"
+                                                        loading="lazy"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </CarouselItem>
+                                    ))}
+                                </CarouselContent>
+                                <CarouselPrevious className="bg-primary/20 hover:bg-primary/40 border-primary/50 text-white" />
+                                <CarouselNext className="bg-primary/20 hover:bg-primary/40 border-primary/50 text-white" />
+                            </Carousel>
+                        </div>
+                    )}
+                </DialogContent>
+            </Dialog>
         </section>
     );
 };
