@@ -71,7 +71,7 @@ const Rounds = () => {
                                     <div className="inline-block px-3 py-1 mb-2 border border-primary/30 rounded text-xs font-mono text-primary uppercase tracking-wider bg-primary/5">
                                         Round 01
                                     </div>
-                                    <h3 className="text-3xl font-orbitron font-bold text-white">IDEATHON</h3>
+                                    <h3 className="text-3xl font-orbitron font-bold text-white">MARK'S IDEA</h3>
                                 </div>
                                 <Lightbulb size={40} className="text-primary opacity-80" />
                             </div>
@@ -126,7 +126,7 @@ const Rounds = () => {
                                     <div className="inline-block px-3 py-1 mb-2 border border-cyan-400/30 rounded text-xs font-mono text-cyan-400 uppercase tracking-wider bg-cyan-400/5">
                                         Round 02
                                     </div>
-                                    <h3 className="text-3xl font-orbitron font-bold text-white">DEBUGGING</h3>
+                                    <h3 className="text-3xl font-orbitron font-bold text-white">BUG SLAYER</h3>
                                 </div>
                                 <Code size={40} className="text-cyan-400 opacity-80" />
                             </div>
